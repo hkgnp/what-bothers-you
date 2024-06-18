@@ -1,31 +1,15 @@
 {
-  "name": "what-bothers-you",
-  "version": "1.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "build:css": "postcss ./public/stylesheets/tailwind.css -o ./public/stylesheets/index.css"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "autoprefixer": "^10.4.0",
-    "axios": "^0.24.0",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "handlebars-helpers": "^0.10.0",
-    "hbs": "^4.1.2",
-    "moment-timezone": "^0.5.34",
-    "mongodb": "^4.1.4",
-    "postcss": "^8.3.11",
-    "postcss-cli": "^9.0.2",
-    "tailwindcss": "^2.2.19",
-    "wax-on": "^1.2.2"
-  },
-  "engines": {
-    "node": "14.x"
-  }
+	"name": "what-bothers-you",
+	"version": "1.0.0",
+	"main": "index.js",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build"
+	},
+	"devDependencies": {
+		"turbo": "^1.13.4"
+	}
 }
