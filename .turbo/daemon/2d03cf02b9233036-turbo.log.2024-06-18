@@ -34,3 +34,16 @@
 2024-06-18T00:52:27.533290Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
 2024-06-18T00:52:38.033956Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("4913"), AnchoredSystemPathBuf("package.json~"), AnchoredSystemPathBuf("package.json")}
 2024-06-18T00:52:38.033992Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(All)
+2024-06-18T14:09:47.048446Z  WARN turborepo_filewatch::package_watcher: lagged behind 42 processing file watching events
+2024-06-18T14:09:47.051257Z  WARN turborepo_filewatch::globwatcher: encountered filewatching error, flushing all globs: channel lagged by 30
+2024-06-18T23:57:21.187683Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo/cookies/.turbo-cookie"), AnchoredSystemPathBuf(".turbo/cookies/1.cookie"), AnchoredSystemPathBuf(".turbo/cookies/2.cookie")}
+2024-06-18T23:57:21.187697Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2024-06-18T23:57:21.387655Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/frontend/vite.config.js.timestamp-1718755041368-81dc67e0febc5.mjs")}
+2024-06-18T23:57:21.387666Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("frontend"), path: AnchoredSystemPathBuf("packages/frontend") }}))
+2024-06-18T23:58:30.888837Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo/cookies/3.cookie"), AnchoredSystemPathBuf(".turbo/cookies/4.cookie")}
+2024-06-18T23:58:30.888848Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2024-06-18T23:58:31.088901Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/frontend/vite.config.js.timestamp-1718755111011-291731df6853.mjs")}
+2024-06-18T23:58:31.088916Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("frontend"), path: AnchoredSystemPathBuf("packages/frontend") }}))
+2024-06-18T23:58:31.105171Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2024-06-18T23:59:53.589385Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/backend/src/main.ts"), AnchoredSystemPathBuf("packages/backend/src/4913"), AnchoredSystemPathBuf("packages/backend/src/main.ts~")}
+2024-06-18T23:59:53.589404Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("backend"), path: AnchoredSystemPathBuf("packages/backend") }}))
