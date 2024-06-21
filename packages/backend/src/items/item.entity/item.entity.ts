@@ -1,19 +1,19 @@
-import { Column,Entity, ObjectId, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm'
 
 @Entity({ name: 'comments' })
 export class ItemEntity {
   @ObjectIdColumn()
-  _id: ObjectId;
+  _id: ObjectId
 
   @Column()
-  date: Date;
+  date: Date
 
   @Column()
-  value: string;
+  value: string
 
-  @Column()
-  discussed: boolean;
+  @Column({ nullable: true })
+  discussed: boolean | null
 
-  @Column()
-  discussed_date: Date;
+  @Column({ nullable: true })
+  discussed_date: Date | null
 }

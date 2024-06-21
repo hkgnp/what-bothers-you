@@ -11,8 +11,9 @@ type ItemProps = {
 const ItemsGrid = ({ allItems }: ItemProps) => {
   return (
     <SimpleGrid spacing={2} columns={[1, 3]}>
-      {allItems.toReversed().map((item) => (
+      {allItems.toReversed().map((item, index) => (
         <Box
+          key={index}
           w={['100%', '300px']}
           borderWidth={2}
           borderRadius="8px"
@@ -22,7 +23,7 @@ const ItemsGrid = ({ allItems }: ItemProps) => {
           <Tag fontSize="10" mb={4}>
             {dayjs(item.date).format('DD MMMM YYYY')}
           </Tag>
-          <Text fontSize="13" textColor="white">
+          <Text fontSize="14" textColor="white">
             {item.value}
           </Text>
         </Box>

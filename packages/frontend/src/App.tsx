@@ -1,35 +1,31 @@
-import dayjs from 'dayjs'
 import React from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Text, SimpleGrid, Box, Flex } from '@chakra-ui/react'
-import { Item } from './types'
-import { Tag } from '@opengovsg/design-system-react'
+import { useQuery } from '@tanstack/react-query'
+import { VStack, Text, Box, Flex } from '@chakra-ui/react'
 import ItemsGrid from './components/ItemsGrid'
+import NewComment from './components/NewComment'
 
 function App() {
-  const client = useQueryClient()
-
   const { data: allItems, error } = useQuery({
     queryKey: ['get-items'],
-    queryFn: (): Promise<Item[]> =>
-      fetch('/api/items')
-        .then((response) => response.json())
-        .then((result) => {
-          return result
-        })
-        .catch((error) => {
-          throw new Error(error)
-        }),
+    queryFn: () =>
+      fetch('/api/items').then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch')
+        return res.json()
+      }),
   })
 
   if (!allItems) return
 
   return (
-    <Box p="10">
-      <Text textStyle="h5" textAlign="center" fontWeight={1000}>
+    <Box px={[5, 20]} py={5}>
+      <Text textStyle="h5" textAlign="center" fontWeight={1000} mb="5">
         What is something that bothers you that WE can work on together?
       </Text>
-
+      <VStack>
+        <Box textAlign="right" mb="5" w="500px">
+          <NewComment />
+        </Box>
+      </VStack>
       <Flex justifyContent="center">
         {!error && <ItemsGrid allItems={allItems} />}
       </Flex>
