@@ -1,8 +1,6 @@
 {
   "type": "mongodb",
-  "host": "localhost",
-  "port": 27017,
-  "database": "test",
+  "url": "mongodb+srv://root:rotiPrata123@cluster0.n61vm.mongodb.net/pigeonhole-clone",
   "entities": [
     "dist/**/*.entity.ts"
   ],

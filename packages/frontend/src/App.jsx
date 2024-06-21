@@ -10,8 +10,9 @@ function App() {
 
   useEffect(() => {
     axios
-      .get('/api')
+      .get('/api/items')
       .then((response) => {
+        console.log(response)
         setMessage(response.data)
       })
       .catch((error) => {

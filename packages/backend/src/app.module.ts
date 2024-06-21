@@ -1,25 +1,26 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ItemsModule } from './items/items.module';
+import { ItemEntity } from './items/item.entity/item.entity';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      host: 'localhost',
-      port: 27017,
-      database: 'whatbothersyou',
-      entities: [],
-      synchronize: true,
-      useUnifiedTopology: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'mongodb',
+        url: configService.get<string>(process.env.DATABASE_URL),
+        synchronize: true,
+        useUnifiedTopology: true,
+        entities: [ItemEntity],
+      }),
+      inject: [ConfigService],
     }),
     ItemsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
