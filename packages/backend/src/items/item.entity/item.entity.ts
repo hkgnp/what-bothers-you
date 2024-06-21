@@ -1,4 +1,4 @@
-import { Entity, ObjectId, ObjectIdColumn, Column } from 'typeorm';
+import { Column,Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 
 @Entity({ name: 'comments' })
 export class ItemEntity {

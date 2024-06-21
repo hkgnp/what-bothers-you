@@ -1,14 +1,7 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Put,
-  Delete,
-} from '@nestjs/common';
-import { ItemsService } from './items.service';
-import { ItemEntity } from './item.entity/item.entity';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
+
+import { ItemEntity } from './item.entity/item.entity'
+import { ItemsService } from './items.service'
 
 @Controller('items')
 export class ItemsController {
@@ -16,26 +9,26 @@ export class ItemsController {
 
   @Get()
   findAll() {
-    return this.itemsService.findAll();
+    return this.itemsService.findAll()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.itemsService.findOne(id);
+    return this.itemsService.findOne(id)
   }
 
   @Post()
   create(@Body() item: ItemEntity) {
-    return this.itemsService.create(item);
+    return this.itemsService.create(item)
   }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() item: ItemEntity) {
-    return this.itemsService.update(id, item);
+    return this.itemsService.update(id, item)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.itemsService.remove(id);
+    return this.itemsService.remove(id)
   }
 }
