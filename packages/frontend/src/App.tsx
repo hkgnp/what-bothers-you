@@ -1,6 +1,7 @@
-import React from 'react'
+import { Box, Flex,Text, VStack } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { VStack, Text, Box, Flex } from '@chakra-ui/react'
+import React from 'react'
+
 import ItemsGrid from './components/ItemsGrid'
 import NewComment from './components/NewComment'
 
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <Box px={[5, 20]} py={5}>
-      <Text textStyle="h5" textAlign="center" fontWeight={1000} mb="5">
+      <Text textStyle="h5" textAlign="center" fontWeight={1000} mb="5" textColor="rgb(67,44,191)">
         What is something that bothers you that WE can work on together?
       </Text>
       <VStack>

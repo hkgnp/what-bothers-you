@@ -47,7 +47,12 @@ const NewComment = () => {
         render={({ field: { value, onChange } }) => {
           return (
             <FormControl>
-              <Textarea value={value || ''} onChange={onChange} mb="3" />
+              <Textarea
+                value={value || ''}
+                onChange={onChange}
+                mb="3"
+                placeholder="Enter your comment here"
+              />
             </FormControl>
           )
         }}

@@ -1,4 +1,4 @@
-export type Item = {
+export interface Item {
   _id: string
   date: Date
   value: string

@@ -1,10 +1,11 @@
 import { Box, SimpleGrid, Text } from '@chakra-ui/react'
-import React from 'react'
-import { Item } from '../types'
 import { Tag } from '@opengovsg/design-system-react'
 import dayjs from 'dayjs'
+import React from 'react'
 
-type ItemProps = {
+import { Item } from '../types'
+
+interface ItemProps {
   allItems: Item[]
 }
 
@@ -17,13 +18,13 @@ const ItemsGrid = ({ allItems }: ItemProps) => {
           w={['100%', '300px']}
           borderWidth={2}
           borderRadius="8px"
+          borderColor="rgb(67,44,191)"
           p={4}
-          backgroundColor="navy"
         >
-          <Tag fontSize="10" mb={4}>
-            {dayjs(item.date).format('DD MMMM YYYY')}
+          <Tag fontSize="10" mb={4} variant="subtle">
+            {dayjs(item.date).format('DD MMM YYYY')}
           </Tag>
-          <Text fontSize="14" textColor="white">
+          <Text fontSize="14" textColor="rgb(67,44,191)">
             {item.value}
           </Text>
         </Box>
