@@ -3,6 +3,8 @@
 /node_modules
 /build
 
+app.yaml
+
 # Logs
 logs
 *.log
