@@ -1,7 +1,7 @@
 import { FormControl } from '@chakra-ui/react'
 import { Button, Textarea } from '@opengovsg/design-system-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
 const NewComment = () => {
@@ -13,9 +13,11 @@ const NewComment = () => {
     mode: 'onChange',
   })
 
+  //@ts-expect-error env does not exist on importmeta
+  const URL = import.meta.env.VITE_BACKEND_URL ?? '/api'
   const mutation = useMutation({
     mutationFn: (body: { value: string; date: Date }) =>
-      fetch('/api/items', {
+      fetch(`${URL}/items`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
