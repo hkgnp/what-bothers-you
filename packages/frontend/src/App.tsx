@@ -5,10 +5,13 @@ import ItemsGrid from './components/ItemsGrid'
 import NewComment from './components/NewComment'
 
 function App() {
+  //@ts-expect-error env does not exist on importmeta
+  const URL = import.meta.env.VITE_BACKEND_URL
+  console.log('URL >>>>>>>>>>>>>>>>>>>>>>', URL)
   const { data: allItems, error } = useQuery({
     queryKey: ['get-items'],
     queryFn: () =>
-      fetch('/api/items').then((res) => {
+      fetch(URL).then((res) => {
         if (!res.ok) throw new Error('Failed to fetch')
         return res.json()
       }),

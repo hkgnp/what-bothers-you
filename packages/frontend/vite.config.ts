@@ -10,7 +10,6 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        // target: 'http://localhost:3000', // Target backend server
         target: 'https://wby-backend.as.r.appspot.com', // Target backend server
         changeOrigin: true, // Recommended for virtual hosted sites
         rewrite: (path) => path.replace(/^\/api/, ''), // Rewrite the API request
