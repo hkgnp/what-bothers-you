@@ -23,15 +23,5 @@
 		"typescript": "^5.4.5",
 		"typescript-eslint": "^7.13.0"
 	},
-	"dependencies": {
-		"@chakra-ui/react": "^2.8.2",
-		"@emotion/react": "^11.11.4",
-		"@emotion/styled": "^11.11.5",
-		"@opengovsg/design-system-react": "^1.21.0",
-		"@tanstack/react-query": "^5.45.1",
-		"dayjs": "^1.11.11",
-		"framer-motion": "^11.2.11",
-		"inter-ui": "^4.0.2",
-		"react-hook-form": "^7.52.0"
-	}
+	"dependencies": {}
 }
