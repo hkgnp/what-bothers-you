@@ -30,7 +30,7 @@ const App = () => {
         What is something that bothers you that WE can work on together?
       </Text>
       <VStack>
-        <Box textAlign="right" mb="5" w="500px">
+        <Box textAlign="right" mb="5" w={['280px', '500px']}>
           <NewComment />
         </Box>
       </VStack>
