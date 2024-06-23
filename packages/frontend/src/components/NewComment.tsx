@@ -1,5 +1,11 @@
 import { FormControl } from '@chakra-ui/react'
-import { Button, Textarea } from '@opengovsg/design-system-react'
+import {
+  Button,
+  FormErrorMessage,
+  Infobox,
+  Textarea,
+  Toast,
+} from '@opengovsg/design-system-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useCallback } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -15,14 +21,9 @@ const NewComment = () => {
     mode: 'onChange',
   })
 
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, isError } = useMutation({
     mutationFn: (body: { value: string; date: Date }) =>
-      api
-        .url('/items')
-        .headers({
-          'Content-Type': 'application/json',
-        })
-        .post(body),
+      api.url('/item').post(body),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['get-items'] })
     },
@@ -44,15 +45,19 @@ const NewComment = () => {
       <Controller
         control={control}
         name={'comment'}
-        render={({ field: { value, onChange } }) => {
+        rules={{
+          required: 'Please enter something',
+        }}
+        render={({ field: { value, onChange }, fieldState: { error } }) => {
           return (
-            <FormControl>
+            <FormControl isInvalid={!!error}>
               <Textarea
                 value={value || ''}
                 onChange={onChange}
                 mb="3"
                 placeholder="Enter your comment here"
               />
+              <FormErrorMessage mt="0">{error?.message}</FormErrorMessage>
             </FormControl>
           )
         }}
@@ -61,10 +66,10 @@ const NewComment = () => {
         isLoading={isPending}
         type="submit"
         variant="outline"
-        colorScheme="main"
+        colorScheme={isError ? 'critical' : 'main'}
         size="xs"
       >
-        Comment!
+        {isError ? 'Unable to post comment' : 'Comment!'}
       </Button>
     </form>
   )
