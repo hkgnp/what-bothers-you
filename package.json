@@ -1,27 +1,26 @@
 {
-	"name": "what-bothers-you",
-	"version": "1.0.0",
-	"main": "index.js",
-	"workspaces": [
-		"packages/*"
-	],
-	"scripts": {
-		"dev": "turbo run dev",
-		"build": "turbo run build",
-		"start": "node packages/backend/dist/main.js"
-	},
-	"devDependencies": {
-		"@eslint/js": "^9.5.0",
-		"@types/eslint__js": "^8.42.3",
-		"@types/node": "^16.11.10",
-		"eslint": "^8.57.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-prettier": "^5.1.3",
-		"eslint-plugin-simple-import-sort": "^12.1.0",
-		"prettier": "3.3.2",
-		"turbo": "^1.13.4",
-		"typescript": "^5.4.5",
-		"typescript-eslint": "^7.13.0"
-	},
-	"dependencies": {}
+  "name": "what-bothers-you",
+  "version": "1.0.0",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "node packages/backend/dist/main.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^16.11.10",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "turbo": "^1.13.4",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^7.13.0"
+  },
+  "dependencies": {}
 }
