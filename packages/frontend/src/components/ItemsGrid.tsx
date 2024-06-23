@@ -1,7 +1,6 @@
 import { Box, SimpleGrid, Text } from '@chakra-ui/react'
 import { Tag } from '@opengovsg/design-system-react'
 import dayjs from 'dayjs'
-import React from 'react'
 
 import { Item } from '../types'
 

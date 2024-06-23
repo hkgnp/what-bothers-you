@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useCallback } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
+import { api } from '../libs/fetch'
+
 const NewComment = () => {
   const client = useQueryClient()
 
@@ -13,18 +15,14 @@ const NewComment = () => {
     mode: 'onChange',
   })
 
-  //@ts-expect-error env does not exist on importmeta
-  const URL = import.meta.env.PROD ? import.meta.env.VITE_BACKEND_URL : '/api'
-  const mutation = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (body: { value: string; date: Date }) =>
-      fetch(`${URL}/items`, {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      }).then((res) => {
-        if (!res.ok) throw new Error('Failed to mutate')
-        return res.json()
-      }),
+      api
+        .url('/items')
+        .headers({
+          'Content-Type': 'application/json',
+        })
+        .post(body),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['get-items'] })
     },
@@ -32,13 +30,13 @@ const NewComment = () => {
 
   const onSubmit = useCallback(
     (formData: { comment: string }) => {
-      mutation.mutate({
+      mutate({
         value: formData.comment,
         date: new Date(),
       })
       reset()
     },
-    [mutation, reset],
+    [mutate, reset],
   )
 
   return (
@@ -59,7 +57,13 @@ const NewComment = () => {
           )
         }}
       />
-      <Button type="submit" variant="outline" colorScheme="main" size="xs">
+      <Button
+        isLoading={isPending}
+        type="submit"
+        variant="outline"
+        colorScheme="main"
+        size="xs"
+      >
         Comment!
       </Button>
     </form>

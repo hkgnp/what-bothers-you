@@ -3,21 +3,16 @@ import { useQuery } from '@tanstack/react-query'
 
 import ItemsGrid from './components/ItemsGrid'
 import NewComment from './components/NewComment'
+import { api } from './libs/fetch'
 
 const App = () => {
-  //@ts-expect-error env does not exist on importmeta
-  const URL = import.meta.env.PROD ? import.meta.env.VITE_BACKEND_URL : '/api'
   const {
     data: allItems,
     error,
     isLoading,
   } = useQuery({
     queryKey: ['get-items'],
-    queryFn: () =>
-      fetch(`${URL}/items`).then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch')
-        return res.json()
-      }),
+    queryFn: () => api.get('/items'),
   })
 
   if (!allItems) return
