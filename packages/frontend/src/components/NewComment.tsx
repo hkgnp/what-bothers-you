@@ -2,9 +2,7 @@ import { FormControl } from '@chakra-ui/react'
 import {
   Button,
   FormErrorMessage,
-  Infobox,
   Textarea,
-  Toast,
 } from '@opengovsg/design-system-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useCallback } from 'react'
@@ -21,11 +19,21 @@ const NewComment = () => {
     mode: 'onChange',
   })
 
-  const { mutate, isPending, isError } = useMutation({
+  const {
+    mutate,
+    isPending,
+    isError,
+    reset: resetMutation,
+  } = useMutation({
     mutationFn: (body: { value: string; date: Date }) =>
-      api.url('/item').post(body),
+      api.url('/items').post(body),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['get-items'] })
+    },
+    onError: () => {
+      setTimeout(() => {
+        resetMutation()
+      }, 2500)
     },
   })
 
@@ -35,7 +43,6 @@ const NewComment = () => {
         value: formData.comment,
         date: new Date(),
       })
-      reset()
     },
     [mutate, reset],
   )
