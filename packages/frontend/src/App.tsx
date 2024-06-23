@@ -1,28 +1,9 @@
-import { Box, Flex, Spinner, Text, VStack } from '@chakra-ui/react'
-import { Infobox } from '@opengovsg/design-system-react'
-import { useQuery } from '@tanstack/react-query'
-import dayjs from 'dayjs'
+import { Box, Flex, Text, VStack } from '@chakra-ui/react'
 
 import ItemsGrid from './components/ItemsGrid'
 import NewComment from './components/NewComment'
-import { api } from './libs/fetch'
 
 const App = () => {
-  const {
-    data: allItems,
-    isSuccess,
-    isError,
-    isPending,
-  } = useQuery({
-    queryKey: ['get-items'],
-    queryFn: () =>
-      api
-        .get('/items')
-        .then((res) =>
-          res.sort((a, b) => (dayjs(a.date).isAfter(dayjs(b.date)) ? 1 : -1)),
-        ),
-  })
-
   return (
     <Box px={[5, 20]} py={5}>
       <Text
@@ -40,19 +21,7 @@ const App = () => {
         </Box>
       </VStack>
       <Flex justifyContent="center">
-        {isSuccess && <ItemsGrid allItems={allItems} />}
-        {isError && (
-          <Infobox variant="error" children="Unable to retrieve comments" />
-        )}
-        {isPending && (
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        )}
+        <ItemsGrid />
       </Flex>
     </Box>
   )
