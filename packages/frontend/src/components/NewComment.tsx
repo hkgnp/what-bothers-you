@@ -14,7 +14,7 @@ const NewComment = () => {
   })
 
   //@ts-expect-error env does not exist on importmeta
-  const URL = import.meta.env.VITE_BACKEND_URL ?? '/api'
+  const URL = import.meta.env.PROD ? import.meta.env.VITE_BACKEND_URL : '/api'
   const mutation = useMutation({
     mutationFn: (body: { value: string; date: Date }) =>
       fetch(`${URL}/items`, {

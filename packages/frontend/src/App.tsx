@@ -1,4 +1,4 @@
-import { Box, Flex, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Spinner, Text, VStack } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 
 import ItemsGrid from './components/ItemsGrid'
@@ -6,8 +6,12 @@ import NewComment from './components/NewComment'
 
 const App = () => {
   //@ts-expect-error env does not exist on importmeta
-  const URL = import.meta.env.VITE_BACKEND_URL ?? '/api'
-  const { data: allItems, error } = useQuery({
+  const URL = import.meta.env.PROD ? import.meta.env.VITE_BACKEND_URL : '/api'
+  const {
+    data: allItems,
+    error,
+    isLoading,
+  } = useQuery({
     queryKey: ['get-items'],
     queryFn: () =>
       fetch(`${URL}/items`).then((res) => {
@@ -36,6 +40,15 @@ const App = () => {
       </VStack>
       <Flex justifyContent="center">
         {!error && <ItemsGrid allItems={allItems} />}
+        {isLoading && (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        )}
       </Flex>
     </Box>
   )
