@@ -1,6 +1,7 @@
 import { Box, Flex, Spinner, Text, VStack } from '@chakra-ui/react'
 import { Infobox } from '@opengovsg/design-system-react'
 import { useQuery } from '@tanstack/react-query'
+import dayjs from 'dayjs'
 
 import ItemsGrid from './components/ItemsGrid'
 import NewComment from './components/NewComment'
@@ -14,7 +15,12 @@ const App = () => {
     isPending,
   } = useQuery({
     queryKey: ['get-items'],
-    queryFn: () => api.get('/items'),
+    queryFn: () =>
+      api
+        .get('/items')
+        .then((res) =>
+          res.sort((a, b) => (dayjs(a.date).isAfter(dayjs(b.date)) ? 1 : -1)),
+        ),
   })
 
   return (

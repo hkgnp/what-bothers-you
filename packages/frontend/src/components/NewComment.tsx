@@ -13,7 +13,11 @@ import { api } from '../libs/fetch'
 const NewComment = () => {
   const client = useQueryClient()
 
-  const { handleSubmit, control, reset } = useForm<{
+  const {
+    handleSubmit,
+    control,
+    reset: resetForm,
+  } = useForm<{
     comment: string
   }>({
     mode: 'onChange',
@@ -29,6 +33,7 @@ const NewComment = () => {
       api.url('/items').post(body),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['get-items'] })
+      resetForm()
     },
     onError: () => {
       setTimeout(() => {
@@ -44,7 +49,7 @@ const NewComment = () => {
         date: new Date(),
       })
     },
-    [mutate, reset],
+    [mutate],
   )
 
   return (
