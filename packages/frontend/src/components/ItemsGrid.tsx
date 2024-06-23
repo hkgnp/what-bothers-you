@@ -3,32 +3,27 @@ import { Tag } from '@opengovsg/design-system-react'
 import { Infobox } from '@opengovsg/design-system-react'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
+import { useMemo } from 'react'
 
 import { api } from '../libs/fetch'
 
 const ItemsGrid = () => {
-  const {
-    data: allItems,
-    isSuccess,
-    isError,
-    isPending,
-  } = useQuery({
+  const { data, isSuccess, isError, isPending } = useQuery({
     queryKey: ['get-items'],
-    queryFn: () =>
-      api
-        .get('/items')
-        .then((res) =>
-          res.sort((a, b) => (dayjs(b.date).isAfter(dayjs(a.date)) ? 1 : -1)),
-        ),
+    queryFn: () => api.get('/items'),
   })
+
+  const allItems = useMemo(() => {
+    return data?.sort((a, b) => (dayjs(b.date).isAfter(dayjs(a.date)) ? 1 : -1))
+  }, [data])
 
   return (
     <>
       <SimpleGrid spacing={2} columns={[1, 3]}>
         {isSuccess &&
-          allItems.map((item, index) => (
+          allItems?.map((item) => (
             <Box
-              key={index}
+              key={item._id}
               w={['100%', '300px']}
               borderWidth={2}
               borderRadius="8px"
